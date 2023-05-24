@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnitTestExample.Abstractions;
 using UnitTestExample.Entities;
 using UnitTestExample.Services;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace UnitTestExample.Controllers
 {
@@ -50,6 +51,31 @@ namespace UnitTestExample.Controllers
 
         public bool ValidatePassword(string password)
         {
+            // Check if the text is at least eight characters long and consists only of letters and numbers
+            if (!Regex.IsMatch(password, @"^[a-zA-Z0-9]{8,}$"))
+            {
+                return false;
+            }
+
+            // Check if the text contains a lowercase letter
+            if (!Regex.IsMatch(password, @"[a-z]"))
+            {
+                return false;
+            }
+
+            // Check if the text contains an uppercase letter
+            if (!Regex.IsMatch(password, @"[A-Z]"))
+            {
+                return false;
+            }
+
+            // Check if the text contains a digit
+            if (!Regex.IsMatch(password, @"\d"))
+            {
+                return false;
+            }
+
+            // All conditions passed, password is valid
             return true;
         }
     }
